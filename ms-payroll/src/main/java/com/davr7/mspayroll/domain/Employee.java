@@ -1,5 +1,7 @@
 package com.davr7.mspayroll.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 
 import java.io.Serial;
@@ -16,5 +18,8 @@ public class Employee  implements Serializable {
 
     private String id;
     private String name;
-    private Double dailyIncome;
+    private String email;
+    @JsonIgnore
+    private String password;
+    private Job job;
 }
