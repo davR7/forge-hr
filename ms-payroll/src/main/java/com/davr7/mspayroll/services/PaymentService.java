@@ -15,6 +15,6 @@ public class PaymentService {
     public Payment readEmployeePay(String employeeId, Integer days) {
         Employee employee = employeeFeignClient.handleReadEmployeeById(employeeId).getBody();
         if (employee == null) throw new IllegalArgumentException();
-        return new Payment(employee.getName(), employee.getDailyIncome(), days);
+        return new Payment(employee.getName(), employee.getJob().getDailyIncome(), days);
     }
 }
