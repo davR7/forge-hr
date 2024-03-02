@@ -1,6 +1,7 @@
 package com.davr7.msemployee.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,5 +23,11 @@ public class Employee  implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String name;
-    private Double dailyIncome;
+    private String email;
+    @JsonIgnore
+    private String password;
+
+    @ManyToOne
+    @JoinColumn(name="job_id")
+    private Job job;
 }
