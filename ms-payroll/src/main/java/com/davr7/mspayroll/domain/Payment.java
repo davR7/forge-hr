@@ -1,5 +1,6 @@
 package com.davr7.mspayroll.domain;
 
+import com.davr7.mspayroll.domain.utils.INSSCalc;
 import lombok.*;
 
 import java.io.Serial;
@@ -17,7 +18,15 @@ public class Payment implements Serializable {
     private Double dailyIncome;
     private Integer days;
 
-    public Double getTotal() {
+    public Double getBasicWage() {
         return dailyIncome * days;
+    }
+
+    public Double getDiscountInss() {
+        return INSSCalc.exec(dailyIncome * days);
+    }
+
+    public Double getGrossWage() {
+        return dailyIncome * days - getDiscountInss();
     }
 }
